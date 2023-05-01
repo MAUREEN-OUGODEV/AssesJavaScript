@@ -27,16 +27,14 @@ console.log(getAvailableBooks(books))
 // 2. Create a function getBooksByAuthor that takes an author's
 //  name as an argument and
 // returns an array of all books by that author.
-// function getBooksByAuthor(author){
-//     let emptyArray=[]
-//     for(let i=0;i<author.length;i++){
-//         if(author[i].author==books.title){
-//          emptyArray.push(author[i])
-//         }
-//     }
-//     return emptyArray
-// }
-// console.log(getBooksByAuthor(author))
+var getBooksByAuthor =books.reduce((name,arr)=>{
+    const{author}=arr;
+    name[author]= name[author]??[];
+    name[author].push(arr);
+    return name;
+},
+{})
+console.log(getBooksByAuthor)
 
 // 3. Create a function addNewBook that takes a book object as an argument and adds it
 // to the library, ensuring that the new book has all required properties (title, author,
@@ -56,9 +54,9 @@ console.log(getAvailableBooks(books))
 // the book does not belong to the library.
 function returnBook(title){
    
-    let isAvailable = true
+ 
     for(let i=0;i<title.length;i++){
-        if(title[i].books==books.title && title[i].books ==isAvailable){
+        if(title[i].books==books.isAvailable){
             return ("It is here")
         }else{
            return "book does not belong to the library"
@@ -66,4 +64,4 @@ function returnBook(title){
     }
 
 }
-console.log(returnBook(books,title))
+console.log(returnBook(title))
